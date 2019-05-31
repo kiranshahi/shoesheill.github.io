@@ -25,6 +25,7 @@ var introEl = document.querySelector('#intro');
 var stripesEl = document.querySelector('#stripes');
 var logoContainer = document.querySelector('#logo-container');
 var logo = logoContainer.querySelector('svg');
+//var logo = logoContainer.querySelector('img');
 var logoPath = logo.querySelector('path');
 var windowWidth = document.body.clientWidth;
 var windowHeight = document.body.clientHeight;
