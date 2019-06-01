@@ -140,6 +140,10 @@ header {
   display: inline-block;
   width: 90%;
 }
+#btnWrap a{
+  text-decoration: none;
+  text-align: center;
+}
 #btnWrap .btn{
   background-color: DodgerBlue;
   border: none;
@@ -267,6 +271,12 @@ a.more:hover .arrow {
     margin: 40px 24px 16px;
     width: auto;
   }
+  #btnWrap{
+    display: none;
+  }
+  #btnWrap a{
+    text-decoration: none;
+  }
   #header-content #logo {
     top: -33px;
   }
@@ -282,7 +292,6 @@ a.more:hover .arrow {
   #profile_sushil{
     margin-top: 30px;
     display: inline-flex;
-    margin-left: 10%;
     width: 100%;
   }
   .LI-badge-container{
@@ -301,6 +310,7 @@ a.more:hover .arrow {
     display: block;
     top:auto;
     margin-top: 30px;
+    margin-bottom: 100px;
   }
   section,
   section#openSource,
