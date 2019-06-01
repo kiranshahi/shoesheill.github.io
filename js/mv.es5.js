@@ -416,7 +416,7 @@ function showContent() {
 // page
 (function () {
   var pageStripesEl = document.querySelector('#page-stripes');
-  var linkEls = document.querySelectorAll('a');
+  var linkEls = document.querySelectorAll('a').not("a.btn");
 
   function animateCrazyLogo() {
     var el = document.querySelector('#header-logo');
