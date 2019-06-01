@@ -76,6 +76,73 @@ function calc(dateString) {
   }
 let work=calc('01/24/2018');
 $("#workCount").text(" for "+work);
+
+
+function parseDate(str) {
+  var mdy = str.split('/')
+  return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+}
+
+function daydiff(first, second) {
+  return (second - first) / (1000 * 60 * 60 * 24)
+}
+
+function monthDiff(start, end) {
+  var tempDate = new Date(start);
+  var monthCount = 0;
+  while ((tempDate.getMonth() + '' + tempDate.getFullYear()) != (end.getMonth() + '' + end.getFullYear())) {
+      monthCount++;
+      tempDate.setMonth(tempDate.getMonth() + 1);
+  }
+  return monthCount + 1;
+}
+let dayInWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+let bDate="4/25/";
+let newDate=new Date();
+let dateToday=new Date(parseInt(newDate.getMonth()+1)+"/"+newDate.getDate()+"/"+newDate.getFullYear());
+let birthDate=new Date(bDate+newDate.getFullYear());
+let weekDay="";
+let Message="Wish me ";
+
+let diff=0;
+let already=true;
+
+if(birthDate>=dateToday){
+  diff=daydiff(dateToday,birthDate).toFixed();
+  weekDay=dayInWeek[new Date(bDate+new Date().getFullYear()).getDay()];
+  already=false;
+
+}
+else if(dateToday>=birthDate && daydiff(birthDate,dateToday).toFixed()<7){
+  diff=daydiff(birthDate,dateToday).toFixed();
+  weekDay=dayInWeek[new Date(bDate+new Date().getFullYear()).getDay()];
+  already=true;
+}
+else{
+  birthDate=new Date(bDate+parseInt(newDate.getFullYear()+1));
+  diff=daydiff(dateToday,birthDate).toFixed();
+  weekDay=dayInWeek[new Date(bDate+parseInt(newDate.getFullYear()+1)).getDay()];
+  already=false;
+}
+$("#msgBirthday").text(getMessage(diff));
+function getMessage(diff){
+  if(diff==0)
+  Message+="Today";
+  else if(diff==1 && !already)
+  Message+="Tommorow";
+  else if(diff==1 && already)
+  Message="Yesterday was my Birthday.";
+  else if(!already && diff<7 && diff>1)
+  Message+="on coming "+weekDay;
+  else if(already && (diff<7 && diff>1))
+  Message="My Birthday was on last "+weekDay;
+  else if(diff>7 && diff<10)
+  Message+="on next "+weekDay;
+  else
+  Message+="after "+diff+" days.";
+  return Message;
+}
+
 });
   
   
