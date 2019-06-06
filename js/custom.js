@@ -96,9 +96,15 @@ function monthDiff(start, end) {
   }
   return monthCount + 1;
 }
+    
+    function calcTime(d, offset) {
+    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    var nd = new Date(utc + (3600000*offset));
+        return nd;
+    }
 let dayInWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 let bDate="4/25/";
-let newDate=new Date();
+let newDate=calcTime(new Date(),'+5.75');
 let dateToday=new Date(parseInt(newDate.getMonth()+1)+"/"+newDate.getDate()+"/"+newDate.getFullYear());
 let birthDate=new Date(bDate+newDate.getFullYear());
 let weekDay="";
