@@ -126,7 +126,7 @@ header {
   align-items: center;
   flex-direction: column;
 }
-.btn {
+#divResume {
   background-color: DodgerBlue;
   border: none;
   color: white;
@@ -137,9 +137,7 @@ header {
 }
 
 /* Darker background on mouse-over */
-#btnWrap .btn:hover {
-  background-color: RoyalBlue;
-}
+
 #header-content {
   text-align: center;
 }
