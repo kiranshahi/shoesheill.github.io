@@ -126,31 +126,14 @@ header {
   align-items: center;
   flex-direction: column;
 }
-#btnWrap{
-  position: absolute;
-  bottom: 200px;
-  right: 50%;
-  width: 240px;
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-#btnWrap .btn{
-  display: inline-block;
-  width: 90%;
-}
-#btnWrap a{
-  text-decoration: none;
-  text-align: center;
-}
-#btnWrap .btn{
+.btn {
   background-color: DodgerBlue;
   border: none;
   color: white;
   padding: 12px 30px;
   cursor: pointer;
   font-size: 20px;
+  margin-top:20px;
 }
 
 /* Darker background on mouse-over */

@@ -148,8 +148,9 @@ function getMessage(diff){
   Message+="after "+diff+" days.";
   return Message;
 }
-$("#btnWrap .btn").off().on("click",function(){
-  window.location.href='/images/resume.pdf';
+$("#divResume").off().on("click",function(e){
+  e.preventDefault(); 
+  window.open('images/resume.pdf','_blank');
 })
 });
   
