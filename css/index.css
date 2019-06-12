@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Code+Pro:400,600);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Code+Pro:400,600);
 
 * {
   margin: 0;
@@ -11,7 +11,15 @@
 *:not(a):not(a *) {
   cursor: default;
 }
-
+#divResume {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top:20px;
+}
 .address{
   color: white;
   cursor: default;
@@ -126,15 +134,7 @@ header {
   align-items: center;
   flex-direction: column;
 }
-#divResume {
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding: 12px 30px;
-  cursor: pointer;
-  font-size: 20px;
-  margin-top:20px;
-}
+
 
 /* Darker background on mouse-over */
 
