@@ -150,7 +150,7 @@ function getMessage(diff){
 }
 $("#divResume").off().on("click",function(e){
    e.preventDefault(); 
-   window.open('images/resume.pdf','_blank');
+   window.open('uploads/sushil-shrestha.pdf','_blank');
 })
 });
   
