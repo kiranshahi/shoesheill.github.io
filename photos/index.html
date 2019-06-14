@@ -1,0 +1,303 @@
+<html>
+
+<head>
+    <title>Sushil- Gallery</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans';
+        }
+
+        h1 {
+            font-weight: 100;
+            margin: 0;
+        }
+
+        section {
+            column-width: 300px;
+            column-gap: 5px;
+            padding: 5px;
+        }
+
+        section img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .lightbox {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            display: none;
+            background: #7f8c8d;
+            perspective: 1000;
+        }
+
+        .filter {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(20px);
+            opacity: 0.5;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .lightbox img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg);
+            max-height: 95vh;
+            max-width: calc(95vw - 100px);
+            transition: 0.8s cubic-bezier(0.7, 0, 0.4, 1);
+            transform-style: preserve-3d;
+        }
+
+
+        /*.lightbox:hover img{
+       transform: translate(-50%, -50%) rotateY(180deg);
+       }*/
+
+        [class^="arrow"] {
+            height: 200px;
+            width: 50px;
+            background: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        [class^="arrow"]:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            width: 15px;
+            height: 15px;
+        }
+
+        .arrowr {
+            right: 0;
+        }
+
+        .arrowr:after {
+            border-right: 1px solid white;
+            border-bottom: 1px solid white;
+        }
+
+        .arrowl {
+            left: 0;
+        }
+
+        .arrowl:after {
+            border-left: 1px solid white;
+            border-top: 1px solid white;
+        }
+
+        .close {
+            position: absolute;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.4);
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .close:after,
+        .close:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background: #e74c3c;
+        }
+
+        .close:after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .close:before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .title {
+            font-size: 20px;
+            color: #000;
+            z-index: 1000;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section id="imageSection">
+        <img src="https://unsplash.it/700/600?image=634" />
+        <img src="https://unsplash.it/700/300?image=455" />
+        <img src="https://unsplash.it/1500/700?image=629" />
+        <img src="https://unsplash.it/700?image=594" />
+        <img src="https://unsplash.it/700/450?image=417" />
+        <img src="https://unsplash.it/700/400?image=410" />
+        <img src="https://unsplash.it/700/550?image=628" />
+        <img src="https://unsplash.it/700/450?image=421" />
+        <img src="https://unsplash.it/700/567?image=572" />
+        <img src="https://unsplash.it/700/978?image=623" />
+        <img src="https://unsplash.it/700/654?image=621" />
+        <img src="https://unsplash.it/700/500?image=423" />
+        <img src="https://unsplash.it/1000/654?image=930" />
+        <img src="https://unsplash.it/700/950?image=1045" />
+        <img src="images/favicon.png" />
+        <img src="https://unsplash.it/700/950?image=1045" />
+    </section>
+    <div class="lightbox">
+        <div class="title"></div>
+        <div class="filter"></div>
+        <div class="arrowr"></div>
+        <div class="arrowl"></div>
+        <div class="close"></div>
+    </div>
+    <script>
+        let totalImage = 20;
+        let html = '';
+        let folderPath = "uploads/test/"
+        for (i = 1; i <= totalImage; i++) {
+            html += `<img src="${folderPath+i}.jpg"/>`;
+        }
+        $("#imageSection").html(html);
+        $(window).load(function () {
+            $("section img").click(function () {
+                $(".lightbox").fadeIn(300);
+                $(".lightbox").append("<img src='" + $(this).attr("src") + "' alt='" + $(this).attr(
+                    "alt") + "' />");
+                $(".filter").css("background-image", "url(" + $(this).attr("src") + ")");
+                /*$(".title").append("<h1>" + $(this).attr("alt") + "</h1>");*/
+                $("html").css("overflow", "hidden");
+                if ($(this).is(":last-child")) {
+                    $(".arrowr").css("display", "none");
+                    $(".arrowl").css("display", "block");
+                } else if ($(this).is(":first-child")) {
+                    $(".arrowr").css("display", "block");
+                    $(".arrowl").css("display", "none");
+                } else {
+                    $(".arrowr").css("display", "block");
+                    $(".arrowl").css("display", "block");
+                }
+            });
+
+            $(".close").click(function () {
+                $(".lightbox").fadeOut(300);
+                $("h1").remove();
+                $(".lightbox img").remove();
+                $("html").css("overflow", "auto");
+            });
+
+            $(document).keyup(function (e) {
+                if (e.keyCode == 27) {
+                    $(".lightbox").fadeOut(300);
+                    $(".lightbox img").remove();
+                    $("html").css("overflow", "auto");
+                }
+            });
+
+            $(".arrowr").click(function () {
+                right();
+            });
+
+            function right() {
+                var imgSrc = $(".lightbox img").attr("src");
+                var search = $("section").find("img[src$='" + imgSrc + "']");
+                var newImage = search.next().attr("src");
+                /*$(".lightbox img").attr("src", search.next());*/
+                $(".lightbox img").attr("src", newImage);
+                $(".filter").css("background-image", "url(" + newImage + ")");
+
+                if (!search.next().is(":last-child")) {
+                    $(".arrowl").css("display", "block");
+                } else {
+                    $(".arrowr").css("display", "none");
+                }
+            }
+            $(".arrowl").click(function () {
+                left();
+            });
+
+            function left() {
+                var imgSrc = $(".lightbox img").attr("src");
+                var search = $("section").find("img[src$='" + imgSrc + "']");
+                var newImage = search.prev().attr("src");
+                /*$(".lightbox img").attr("src", search.next());*/
+                $(".lightbox img").attr("src", newImage);
+                $(".filter").css("background-image", "url(" + newImage + ")");
+
+                if (!search.prev().is(":first-child")) {
+                    $(".arrowr").css("display", "block");
+                } else {
+                    $(".arrowl").css("display", "none");
+                }
+            }
+
+
+            $("body").keydown(function (e) {
+                switch (e.which) {
+                    case 37: // left
+                        left();
+                        break;
+
+                    case 38: // up
+                        left();
+                        break;
+
+                    case 39: // right
+                        right();
+                        break;
+
+                    case 40: // down
+                        right();
+                        break;
+
+                    default:
+                        return; // exit this handler for other keys
+                }
+                e.preventDefault();
+            });
+            $('.lightbox').on('mousewheel DOMMouseScroll', function (e) {
+                if (typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
+                    if (e.originalEvent.detail > 0) {
+                        //console.log('Down');
+                        right();
+                    } else if (e.originalEvent.detail < 0) {
+                        //console.log('Up');
+                        right();
+                    }
+                } else if (typeof e.originalEvent.wheelDelta == 'number') {
+                    if (e.originalEvent.wheelDelta < 0) {
+                        //console.log('Down');
+                        left();
+                    } else
+                    if (e.originalEvent.wheelDelta > 0) {
+                        //console.log('Up');
+                        right();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
