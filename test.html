@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>Dynamically load images: jQuery Looping</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <style type="text/css">
+        div {
+
+            display: inline;
+            padding: 10px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+
+
+    <script type="text/javascript">
+        var folder = "images/";
+
+        var filenames = [],
+            foldernames = [];
+
+        $.get("images/", function (response) {
+            debugger
+            document.write(response);
+            getNames();
+        });
+
+        function getNames() {
+            debugger
+            var files = document.querySelectorAll("a.icon.file");
+            var folders = document.querySelectorAll("a.icon.dir");
+            files.forEach(function (item) {
+                filenames.push(item.textContent)
+            })
+            folders.forEach(function (item) {
+                debugger
+                foldernames.push(item.textContent.slice(0, -1))
+            })
+            console.log(filenames);
+            console.log(foldernames);
+        }
+        $.ajax({
+            url: folder,
+            success: function (data) {
+                debugger
+                $(data).find("a").attr("href", function (i, val) {
+                    if (val.match(/\.(jpe?g|png|gif)$/)) {
+                        $("body").append("<img src='" + folder + val + "'>");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
