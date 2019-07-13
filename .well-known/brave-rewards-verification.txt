@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: sksushil.com.np
+Token: af0533fbaf511d96c822a57aa56dc2e8893364904c8c2e83fd88e9d7954f5a23
